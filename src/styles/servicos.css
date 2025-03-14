@@ -1,0 +1,244 @@
+:root {
+    --card-bg: #fff;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-radius: 8px;
+    --card-padding: 1.5rem;
+    --featured-color: #f8bf39;
+}
+
+/* Hero Section */
+.services-hero {
+    background-color: var(--header-bg);
+    color: var(--white);
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+
+.services-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.services-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Services Grid */
+.services-grid {
+    padding: 4rem 0;
+}
+
+.services-categories {
+    margin-bottom: 4rem;
+}
+
+.services-categories h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
+
+/* Service Cards */
+.service-card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-image {
+    position: relative;
+    height: 200px;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--featured-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.service-content {
+    padding: var(--card-padding);
+}
+
+.service-content h3 {
+    margin: 0 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.service-content p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.service-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.service-features i {
+    color: var(--primary-color);
+}
+
+.service-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.service-price span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Promotions Section */
+.promotions {
+    background: #f9f9f9;
+    padding: 4rem 0;
+}
+
+.promotions h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.promotions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.promotion-card {
+    background: var(--card-bg);
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    text-align: center;
+}
+
+.promotion-card h3 {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.promotion-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.promotion-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.promotion-card ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.promotion-card ul li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.promotion-price {
+    margin: 1.5rem 0;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 1rem;
+}
+
+.discounted-price {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 4rem 0 2rem;
+    }
+
+    .services-hero h1 {
+        font-size: 2rem;
+    }
+
+    .service-card {
+        margin: 0 1rem;
+    }
+
+    .promotion-card {
+        margin: 0 1rem;
+    }
+} 

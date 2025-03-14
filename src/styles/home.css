@@ -1,0 +1,217 @@
+body {
+    background-color: var(--header-bg) !important;
+    background-image: none !important;
+}
+
+.subtitle {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Banner Carousel */
+.banner-carousel {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    margin-top: 80px;
+}
+
+.carousel-container {
+    position: relative;
+    height: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--primary-color);
+    opacity: 0.8;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.carousel-button.prev { left: 1rem; }
+.carousel-button.next { right: 1rem; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--primary-color);
+    opacity: 1;
+}
+
+/* Barbers Section */
+.barbers-section {
+    padding: 4rem 0;
+}
+
+.barbers-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 0 3rem;
+}
+
+.barbers-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+.barber-card {
+    min-width: 300px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.barber-card:hover {
+    transform: translateY(-5px);
+}
+
+.barber-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.barber-card h3 {
+    margin: 1rem;
+    color: var(--text-secondary);
+}
+
+.barber-card p {
+    margin: 0 1rem 1rem;
+    color: #666;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.barber-info {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.barber-photo {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.barber-details h2 {
+    margin: 0 0 1rem;
+    color: var(--text-secondary);
+}
+
+.schedule-list,
+.services-list {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-list li,
+.services-list li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+/* Map Section */
+.map-section {
+    padding: 4rem 0;
+}
+
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .barber-info {
+        grid-template-columns: 1fr;
+    }
+
+    .barber-photo {
+        height: 300px;
+    }
+
+    .carousel-button {
+        padding: 0.5rem;
+    }
+} 

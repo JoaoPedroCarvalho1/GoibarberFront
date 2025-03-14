@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Goiabarber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/buttons.css">
+    <link rel="stylesheet" href="src/styles/agendamento.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <app-header></app-header>
+    
+    <main>
+        <div class="container">
+            <!-- Tabs de navegação -->
+            <div class="booking-tabs">
+                <button class="tab-btn active" data-tab="new-booking">Novo Agendamento</button>
+                <button class="tab-btn" data-tab="my-bookings">Meus Agendamentos</button>
+            </div>
+
+            <!-- Seção de Novo Agendamento -->
+            <div class="tab-content active" id="new-booking">
+                <div class="booking-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Serviço</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Profissional</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Data e Hora</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-text">Confirmação</span>
+                    </div>
+                </div>
+
+                <!-- Passo 1: Seleção de Serviço -->
+                <div class="booking-section active" data-section="1">
+                    <h2>Escolha o Serviço</h2>
+                    <div class="services-grid">
+                        <div class="service-card" data-service="corte" data-price="45">
+                            <img src="src/images/corte.jpg" alt="Corte de Cabelo">
+                            <h3>Corte de Cabelo</h3>
+                            <p>45 minutos</p>
+                            <span class="price">R$ 45,00</span>
+                        </div>
+                        <div class="service-card" data-service="barba" data-price="35">
+                            <img src="src/images/barba.jpg" alt="Barba">
+                            <h3>Barba</h3>
+                            <p>30 minutos</p>
+                            <span class="price">R$ 35,00</span>
+                        </div>
+                        <div class="service-card" data-service="combo" data-price="70">
+                            <img src="src/images/combo.jpg" alt="Combo">
+                            <h3>Combo Completo</h3>
+                            <p>1h15min</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 2: Seleção de Profissional -->
+                <div class="booking-section" data-section="2">
+                    <h2>Escolha o Profissional</h2>
+                    <div class="barbers-grid">
+                        <div class="barber-card" data-barber="1">
+                            <img src="src/images/barber1.jpg" alt="João Silva">
+                            <h3>João Silva</h3>
+                            <p>Especialista em Degradê</p>
+                        </div>
+                        <div class="barber-card" data-barber="2">
+                            <img src="src/images/barber2.jpg" alt="Pedro Santos">
+                            <h3>Pedro Santos</h3>
+                            <p>Barbeiro Master</p>
+                        </div>
+                        <div class="barber-card" data-barber="3">
+                            <img src="src/images/barber3.jpg" alt="Carlos Oliveira">
+                            <h3>Carlos Oliveira</h3>
+                            <p>Expert em Barba</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 3: Seleção de Data e Hora -->
+                <div class="booking-section" data-section="3">
+                    <h2>Escolha a Data e Horário</h2>
+                    <div class="calendar-container">
+                        <div class="calendar" id="booking-calendar"></div>
+                        <div class="time-slots">
+                            <h3>Horários Disponíveis</h3>
+                            <div class="slots-grid">
+                                <!-- Horários serão inseridos via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 4: Confirmação -->
+                <div class="booking-section" data-section="4">
+                    <h2>Confirme seu Agendamento</h2>
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <span class="label">Serviço:</span>
+                            <span class="value" id="summary-service"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Profissional:</span>
+                            <span class="value" id="summary-barber"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Data:</span>
+                            <span class="value" id="summary-date"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Horário:</span>
+                            <span class="value" id="summary-time"></span>
+                        </div>
+                        <div class="summary-item total">
+                            <span class="label">Total:</span>
+                            <span class="value" id="summary-price"></span>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <btn-secondary class="btn-back">Voltar</btn-secondary>
+                        <btn-primary class="btn-checkout">Ir para Pagamento</btn-primary>
+                    </div>
+                </div>
+
+                <!-- Navegação entre passos -->
+                <div class="step-navigation">
+                    <btn-secondary class="btn-prev" disabled>Anterior</btn-secondary>
+                    <btn-primary class="btn-next">Próximo</btn-primary>
+                </div>
+            </div>
+
+            <!-- Seção de Meus Agendamentos -->
+            <div class="tab-content" id="my-bookings">
+                <h2>Meus Agendamentos</h2>
+                <div class="bookings-list">
+                    <!-- Os agendamentos serão inseridos via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+
+    <script src="src/components/buttons.js"></script>
+    <script src="src/components/header.js"></script>
+    <!-- <script src="src/components/footer.js"></script> -->
+    <script src="src/js/calendar.js"></script>
+    <script src="src/js/agendamento.js"></script>
+</body>
+</html> 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Goiabarber</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/buttons.css">
+    <link rel="stylesheet" href="src/styles/servicos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <app-header></app-header>
+    
+    <main>
+        <section class="services-hero">
+            <div class="container">
+                <h1>Nossos Serviços</h1>
+                <p>Conheça todos os serviços oferecidos pela Goiabarber</p>
+            </div>
+        </section>
+
+        <section class="services-grid">
+            <div class="container">
+                <div class="services-categories">
+                    <h2 class="subtitle">Serviços Principais</h2>
+                    <div class="services-container">
+                        <!-- Corte de Cabelo -->
+                        <div class="service-card">
+                            <div class="service-image">
+                                <img src="src/images/corte-cabelo.jpg" alt="Corte de Cabelo">
+                            </div>
+                            <div class="service-content">
+                                <h3>Corte de Cabelo</h3>
+                                <p>Corte profissional personalizado de acordo com seu estilo</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-clock"></i> 45 minutos</li>
+                                    <li><i class="fas fa-check"></i> Inclui lavagem</li>
+                                </ul>
+                                <div class="service-price">
+                                    <span>R$ 45,00</span>
+                                    <btn-primary>Agendar</btn-primary>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Barba -->
+                        <div class="service-card">
+                            <div class="service-image">
+                                <img src="src/images/barba.jpg" alt="Barba">
+                            </div>
+                            <div class="service-content">
+                                <h3>Barba</h3>
+                                <p>Modelagem completa com toalha quente e produtos premium</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-clock"></i> 30 minutos</li>
+                                    <li><i class="fas fa-check"></i> Inclui hidratação</li>
+                                </ul>
+                                <div class="service-price">
+                                    <span>R$ 35,00</span>
+                                    <btn-primary>Agendar</btn-primary>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Combo -->
+                        <div class="service-card featured">
+                            <div class="service-image">
+                                <img src="src/images/combo.jpg" alt="Combo Completo">
+                                <div class="featured-tag">Mais Popular</div>
+                            </div>
+                            <div class="service-content">
+                                <h3>Combo Completo</h3>
+                                <p>Corte de cabelo + Barba com atendimento premium</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-clock"></i> 1h15min</li>
+                                    <li><i class="fas fa-check"></i> Inclui todos os cuidados</li>
+                                </ul>
+                                <div class="service-price">
+                                    <span>R$ 70,00</span>
+                                    <btn-primary>Agendar</btn-primary>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="services-categories">
+                    <h2 class="subtitle">Serviços Adicionais</h2>
+                    <div class="services-container">
+                        <!-- Pigmentação -->
+                        <div class="service-card">
+                            <div class="service-image">
+                                <img src="src/images/pigmentacao.jpg" alt="Pigmentação">
+                            </div>
+                            <div class="service-content">
+                                <h3>Pigmentação</h3>
+                                <p>Correção de falhas e pigmentação natural</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-clock"></i> 45 minutos</li>
+                                    <li><i class="fas fa-check"></i> Produto importado</li>
+                                </ul>
+                                <div class="service-price">
+                                    <span>R$ 80,00</span>
+                                    <btn-primary>Agendar</btn-primary>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hidratação -->
+                        <div class="service-card">
+                            <div class="service-image">
+                                <img src="src/images/hidratacao.jpg" alt="Hidratação">
+                            </div>
+                            <div class="service-content">
+                                <h3>Hidratação Capilar</h3>
+                                <p>Tratamento profundo para cabelos</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-clock"></i> 30 minutos</li>
+                                    <li><i class="fas fa-check"></i> Produtos especiais</li>
+                                </ul>
+                                <div class="service-price">
+                                    <span>R$ 50,00</span>
+                                    <btn-primary>Agendar</btn-primary>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Promoções -->
+        <section class="promotions">
+            <div class="container">
+                <h2 class="subtitle">Pacotes Especiais</h2>
+                <div class="promotions-container">
+                    <div class="promotion-card">
+                        <h3>Pacote Pai e Filho</h3>
+                        <p>Corte para pai e filho com preço especial</p>
+                        <div class="promotion-price">
+                            <span class="original-price">R$ 90,00</span>
+                            <span class="discounted-price">R$ 75,00</span>
+                        </div>
+                        <btn-primary>Aproveitar</btn-primary>
+                    </div>
+                    <div class="promotion-card">
+                        <h3>Pacote Noivo</h3>
+                        <p>Preparação completa para o grande dia</p>
+                        <ul>
+                            <li>Corte + Barba</li>
+                            <li>Hidratação</li>
+                            <li>Design de Sobrancelha</li>
+                        </ul>
+                        <div class="promotion-price">
+                            <span class="discounted-price">R$ 150,00</span>
+                        </div>
+                        <btn-primary>Agendar</btn-primary>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <app-footer></app-footer>
+
+    <script src="src/components/header.js"></script>
+
+</body>
+</html> 

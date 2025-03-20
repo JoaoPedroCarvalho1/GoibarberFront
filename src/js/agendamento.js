@@ -13,12 +13,10 @@ class BookingManager {
         this.initializeElements();
         this.addEventListeners();
         this.loadInitialData();
-        console.log('BookingManager iniciado');
 
         // Inicializa o calendário
         this.calendar = new Calendar('booking-calendar', {
             onDateSelect: (date) => {
-                console.log('Data selecionada:', date);
                 this.handleDateSelect(date);
             }
         });
@@ -40,6 +38,7 @@ class BookingManager {
         // Service Cards
         this.serviceCards = document.querySelectorAll('.service-card');
         this.barberCards = document.querySelectorAll('.barber-card');
+
     }
 
     addEventListeners() {
@@ -53,24 +52,20 @@ class BookingManager {
 
         // Eventos de navegação
         this.prevBtn.addEventListener('click', () => {
-            console.log('Botão Anterior clicado. Passo atual:', this.currentStep);
             this.navigateStep('prev');
         });
 
         this.nextBtn.addEventListener('click', () => {
-            console.log('Botão Próximo clicado. Passo atual:', this.currentStep);
-            this.navigateStep('next');
+            if (this.currentStep === 4) {
+                this.createBooking(); // Chama createBooking se estiver no passo 4
+            } else {
+                this.navigateStep('next'); // Navega para o próximo passo
+            }
         });
 
         // Eventos de seleção de serviço
         this.serviceCards.forEach(card => {
             card.addEventListener('click', () => {
-                const serviceName = card.querySelector('h3').textContent;
-                const servicePrice = card.dataset.price;
-                console.log('Serviço selecionado:', {
-                    nome: serviceName,
-                    preco: servicePrice
-                });
                 this.selectService(card);
             });
         });
@@ -78,33 +73,10 @@ class BookingManager {
         // Eventos de seleção de barbeiro
         this.barberCards.forEach(card => {
             card.addEventListener('click', () => {
-                const barberName = card.querySelector('h3').textContent;
-                console.log('Barbeiro selecionado:', barberName);
                 this.selectBarber(card);
             });
         });
 
-        // Log para horários
-        document.querySelectorAll('.time-slot').forEach(slot => {
-            slot.addEventListener('click', () => {
-                console.log('Horário selecionado:', slot.textContent);
-                this.selectTimeSlot(slot);
-            });
-        });
-
-        // Log para botão de confirmação
-        const confirmBtn = document.querySelector('.btn-checkout');
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                console.log('Botão de checkout clicado', {
-                    servico: this.selectedService,
-                    barbeiro: this.selectedBarber,
-                    data: this.selectedDate,
-                    horario: this.selectedTime
-                });
-                this.createBooking();
-            });
-        }
     }
 
     switchTab(tab) {
@@ -116,9 +88,14 @@ class BookingManager {
 
         this.tabContents.forEach(content => {
             content.classList.remove('active');
-            if (content.id === tabId) {
-                content.classList.add('active');
-            }
+            const menu = document.getElementById(tabId);
+            const isMyBookings = menu.id === "my-bookings";
+            const menuUnselectId = isMyBookings ? 'new-booking' : 'my-booking';
+
+            content.classList.toggle('active', content.id === tabId);
+            menu.classList.remove('none');
+            document.getElementById(menuUnselectId).classList.add('none');
+            console.log(menu.id);
         });
     }
 
@@ -129,20 +106,16 @@ class BookingManager {
             if (this.validateCurrentStep()) {
                 this.currentStep++;
             } else {
+                // Exibe uma mensagem de aviso se a validação falhar
+                this.showWarning('Por favor, selecione antes de continuar.');
                 console.log('Validação falhou no passo:', this.currentStep);
-                return;
+                return; // Se a validação falhar, não navegue
             }
         } else if (direction === 'prev' && this.currentStep > 1) {
             this.currentStep--;
         }
 
-        console.log('Navegação:', {
-            direcao: direction,
-            passoAntigo: oldStep,
-            passoNovo: this.currentStep
-        });
-
-        this.updateStepsDisplay();
+        this.updateStepsDisplay(); // Atualiza a exibição após a navegação
     }
 
     validateCurrentStep() {
@@ -174,8 +147,10 @@ class BookingManager {
         // Update sections visibility
         this.sections.forEach((section, index) => {
             section.classList.remove('active');
+            section.classList.add('none');
             if (index + 1 === this.currentStep) {
                 section.classList.add('active');
+                section.classList.remove('none');
             }
         });
 
@@ -185,38 +160,56 @@ class BookingManager {
     }
 
     selectService(card) {
-        this.serviceCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        
-        this.selectedService = {
-            id: card.dataset.serviceId,
-            name: card.querySelector('h3').textContent,
-            price: parseFloat(card.dataset.price)
-        };
+        // If clicking the same card that's already selected, deselect it
+        if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+            this.selectedService = null;
+        } else {
+            // Remove selection from other cards and select the new one
+            this.serviceCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            
+            this.selectedService = {
+                id: card.dataset.serviceId,
+                name: card.querySelector('h3').textContent,
+                price: parseFloat(card.dataset.price)
+            };
+        }
 
-        console.log('Serviço atualizado:', this.selectedService);
         this.updateSummary();
     }
 
     selectBarber(card) {
-        this.barberCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        
-        this.selectedBarber = {
-            id: card.dataset.barberId,
-            name: card.querySelector('h3').textContent
-        };
+        // If clicking the same card that's already selected, deselect it
+        if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+            this.selectedBarber = null;
+        } else {
+            // Remove selection from other cards and select the new one
+            this.barberCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            
+            this.selectedBarber = {
+                id: card.dataset.barberId,
+                name: card.querySelector('h3').textContent
+            };
+        }
 
-        console.log('Barbeiro atualizado:', this.selectedBarber);
         this.updateSummary();
     }
 
     selectTimeSlot(slot) {
+        // Remove a seleção de todos os horários
         document.querySelectorAll('.time-slot').forEach(s => 
             s.classList.remove('selected'));
+        
+        // Adiciona a classe 'selected' ao horário clicado
         slot.classList.add('selected');
+        
+        // Atualiza o horário selecionado
         this.selectedTime = slot.dataset.time;
-        console.log('Horário atualizado:', this.selectedTime);
+        
+        // Atualiza o resumo
         this.updateSummary();
     }
 
@@ -229,7 +222,8 @@ class BookingManager {
             preco: this.selectedService?.price
         };
 
-        console.log('Resumo atualizado:', summary);
+        // Log the summary for debugging purposes
+        // console.log('Resumo do agendamento:', summary);
 
         // Atualiza os elementos do DOM
         if (this.selectedService) {
@@ -258,15 +252,19 @@ class BookingManager {
             
             // Carrega serviços
             const services = await ApiService.getServices();
-            console.log('Serviços carregados:', services);
             this.renderServices(services);
+            const barbers = await ApiService.getBarbers();
+            this.renderBarbers(barbers);
 
             // Carrega agendamentos do usuário
             const userBookings = await ApiService.getUserBookings();
             console.log('Agendamentos do usuário carregados:', userBookings);
-            // this.renderUserBookings(userBookings);
+            this.setLoading(true); // Inicia o loading
+            await this.renderUserBookings(userBookings);
+            this.setLoading(false); // Finaliza o loading
 
         } catch (error) {
+            console.error('Erro ao carregar dados iniciais:', error);
             this.showError('Erro ao carregar dados iniciais');
         } finally {
             this.setLoading(false);
@@ -275,7 +273,6 @@ class BookingManager {
 
     setLoading(isLoading) {
         this.loading = isLoading;
-        console.log('Estado de loading:', isLoading);
         // Adiciona/remove classe de loading nos containers
         document.querySelectorAll('.loading-container').forEach(container => {
             container.classList.toggle('loading', isLoading);
@@ -296,20 +293,17 @@ class BookingManager {
             </div>
         `).join('');
 
-        // Reattach event listeners
-        this.attachServiceListeners();
-    }
-
-    async loadBarbers() {
-        try {
-            this.setLoading(true);
-            const barbers = await ApiService.getBarbers();
-            this.renderBarbers(barbers);
-        } catch (error) {
-            this.showError('Erro ao carregar profissionais');
-        } finally {
-            this.setLoading(false);
-        }
+        // Adiciona eventos de clique aos cartões de serviço
+        const serviceCards = container.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (typeof this.selectService === 'function') {
+                    this.selectService(card);
+                } else {
+                    console.error('selectService não é uma função');
+                }
+            });
+        });
     }
 
     renderBarbers(barbers) {
@@ -326,20 +320,31 @@ class BookingManager {
             </div>
         `).join('');
 
-        this.attachBarberListeners();
+        // Adiciona eventos de clique aos cartões de barbeiro
+        const barberCards = container.querySelectorAll('.barber-card');
+        barberCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (typeof this.selectBarber === 'function') {
+                    this.selectBarber(card);
+                } else {
+                    console.error('selectBarber não é uma função');
+                }
+            });
+        });
     }
 
     async loadTimeSlots() {
         if (!this.selectedBarber || !this.selectedDate) return;
-
         try {
             this.setLoading(true);
             const availableSlots = await ApiService.getBarberAvailability(
                 this.selectedBarber.id,
                 this.selectedDate
             );
+
             this.renderTimeSlots(availableSlots);
         } catch (error) {
+            console.error('Erro ao carregar horários disponíveis:', error);
             this.showError('Erro ao carregar horários disponíveis');
         } finally {
             this.setLoading(false);
@@ -354,7 +359,12 @@ class BookingManager {
             </div>
         `).join('');
 
-        this.attachTimeSlotListeners();
+        // Adiciona eventos de clique aos slots de horário
+        container.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', () => {
+                this.selectTimeSlot(slot);
+            });
+        });
     }
 
     renderUserBookings(bookings) {
@@ -380,13 +390,15 @@ class BookingManager {
         this.attachBookingActionListeners();
     }
 
-    getServiceName(serviceId) {
-        const service = MOCK_DATA.services.find(s => s.id === serviceId);
+    async getServiceName(serviceId) {
+        const services =  await ApiService.getServices();
+        const service = services.find(s => s.id === serviceId)
         return service ? service.name : 'Serviço não encontrado';
     }
 
-    getBarberName(barberId) {
-        const barber = MOCK_DATA.barbers.find(b => b.id === barberId);
+    async getBarberName(barberId) {
+        const barbers =  await ApiService.getBarbers();
+        const barber = barbers.find(s => s.id === barberId)
         return barber ? barber.name : 'Profissional não encontrado';
     }
 
@@ -526,10 +538,30 @@ class BookingManager {
         this.selectedDate = date;
         this.loadTimeSlots(); // Carrega horários disponíveis para a data selecionada
     }
+
+    showWarning(message) {
+        // Implementa a lógica para mostrar uma mensagem de aviso
+        const notification = document.createElement('div');
+        notification.className = 'notification warning';
+        notification.textContent = message;
+
+        // Adiciona um botão de fechar
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'X';
+        closeButton.onclick = () => notification.remove();
+        notification.appendChild(closeButton);
+
+        // Adiciona ao DOM
+        document.body.appendChild(notification);
+
+        // Remove automaticamente após 5 segundos
+        setTimeout(() => {
+            notification.remove();
+        }, 5000);
+    }
 }
 
 // Inicializa o gerenciador quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Página carregada, iniciando BookingManager');
     const bookingManager = new BookingManager();
 }); 

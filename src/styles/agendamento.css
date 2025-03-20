@@ -2,11 +2,17 @@
     --step-active: var(--primary-color);
     --step-complete: #4CAF50;
     --step-inactive: var(--header-bg);
+    --highlight-color: #FF9000;
 }
-
+h2{
+    color:var(--primary-color)
+}
+.none{
+    display:none !important;
+}
 .container {
     max-width: 100%;
-    margin: 2rem auto;
+    margin: 20rem auto;
     padding: 0 1rem;
 }
 
@@ -24,7 +30,7 @@
     border-bottom: 2px solid transparent;
     cursor: pointer;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--white);
 }
 
 .tab-btn.active {
@@ -47,7 +53,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--step-inactive);
+    background: var(--white);
     z-index: 1;
 }
 
@@ -88,30 +94,33 @@
 .services-grid,
 .barbers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 20px;
 }
 
 .service-card,
 .barber-card {
-    border: 2px solid transparent;
-    border-radius: 8px;
-    padding: 1rem;
-    cursor: pointer;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
-    background: var(--header-bg);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
 }
 
 .service-card:hover,
 .barber-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .service-card.selected,
 .barber-card.selected {
-    border-color: var(--primary-color);
+    border: 2px solid var(--highlight-color);
+    box-shadow: 0 0 0 2px rgba(255, 144, 0, 0.2);
+    background:var(--highlight-color))
 }
 
 .service-card img,
@@ -119,8 +128,63 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+}
+
+.service-card h3,
+.barber-card h3 {
+    font-size: 1.2rem;
+    margin: 16px 16px 8px;
+    color: #312E38;
+}
+
+.service-card p,
+.barber-card p {
+    font-size: 0.9rem;
+    color: #666360;
+    margin: 0 16px 16px;
+    line-height: 1.4;
+}
+
+.service-details,
+.barber-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #F5F5F5;
+    border-top: 1px solid #eee;
+}
+
+.service-details span,
+.barber-rating span {
+    font-size: 0.9rem;
+    color: #666360;
+}
+
+.service-details .price {
+    font-weight: bold;
+    color: var(--highlight-color);
+}
+
+.barber-rating .stars {
+    color: #FFB800;
+}
+
+.barber-rating .rating-value {
+    font-weight: bold;
+    color: #312E38;
+}
+
+/* Animation for selection */
+.service-card.selected,
+.barber-card.selected {
+    animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
 /* Calendar */
@@ -139,6 +203,7 @@
 
 .time-slots {
     background: white;
+    color:var(--primary-color);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -221,24 +286,19 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    min-width: 300px;
-    padding: 1rem;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateX(120%);
-    transition: transform 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
     z-index: 1000;
 }
 
-.notification.show {
-    transform: translateX(0);
+.notification.warning {
+    background-color: #ff4444;
+    color: white;
+    border-left: 4px solid #cc0000;
 }
 
 /* Tipos de notificação */
-.notification.error {
+.notification.error{
     background-color: #ff4444;
     color: white;
     border-left: 4px solid #cc0000;
@@ -300,7 +360,14 @@
 @media (max-width: 768px) {
     .services-grid,
     .barbers-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .service-card img,
+    .barber-card img {
+        height: 160px;
     }
 
     .calendar-container {

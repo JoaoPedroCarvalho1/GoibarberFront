@@ -40,7 +40,7 @@ const MOCK_DATA = {
             id: 2,
             name: "Pedro Santos",
             specialty: "Barbeiro Master",
-            image: "../barbearia.jpg",
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
             rating: 4.9,
             availableDays: [1, 2, 3, 4, 5, 6] // Segunda a Sábado
         },
@@ -48,7 +48,7 @@ const MOCK_DATA = {
             id: 3,
             name: "Carlos Oliveira",
             specialty: "Expert em Barba",
-            image: "../barbearia.jpg",
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
             rating: 4.7,
             availableDays: [2, 3, 4, 5, 6] // Terça a Sábado
         }
@@ -97,13 +97,12 @@ class ApiService {
 
     static async getBarberAvailability(barberId, date) {
         await new Promise(resolve => setTimeout(resolve, 300));
-        const barber = MOCK_DATA.barbers.find(b => b.id === barberId);
+        const barber = MOCK_DATA.barbers.find(b => b.id == barberId);
         const dayOfWeek = new Date(date).getDay();
         
         if (!barber.availableDays.includes(dayOfWeek)) {
             return [];
         }
-
         return [...MOCK_DATA.timeSlots.morning, ...MOCK_DATA.timeSlots.afternoon];
     }
 

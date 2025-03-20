@@ -36,7 +36,11 @@
 .services-categories h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--text-secondary);
+    color: var(--featured-color);
+}
+
+.container h1{
+    color: var(--featured-color);
 }
 
 .services-container {
@@ -70,7 +74,7 @@
 
 /* Service Cards */
 .service-card {
-    background: var(--card-bg);
+    background: var(--header-bg);
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: var(--card-shadow);
@@ -110,11 +114,11 @@
 
 .service-content h3 {
     margin: 0 0 0.5rem;
-    color: var(--text-secondary);
+    color: var(--white);
 }
 
 .service-content p {
-    color: #666;
+    color: var(--white);
     margin-bottom: 1rem;
     font-size: 0.9rem;
 }
@@ -129,7 +133,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #666;
+    color: var(--white);
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
 }
@@ -148,97 +152,187 @@
 .service-price span {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--white);
 }
 
-/* Promotions Section */
+/* Seção de Promoções */
 .promotions {
-    background: #f9f9f9;
-    padding: 4rem 0;
+    background: var(--header-bg);
+    padding: 5rem 0;
 }
 
 .promotions h2 {
     text-align: center;
     margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--featured-color);
 }
 
 .promotions-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .promotion-card {
-    background: var(--card-bg);
-    padding: var(--card-padding);
-    border-radius: var(--card-radius);
-    box-shadow: var(--card-shadow);
-    text-align: center;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-.promotion-card h3 {
-    color: var(--text-secondary);
+.promotion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.promotion-badge {
+    position: absolute;
+    top: 1rem;
+    right: -2rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.promotion-badge.premium {
+    background: #2c3e50;
+}
+
+.promotion-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.promotion-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
-.promotion-card p {
-    color: #666;
-    margin-bottom: 1.5rem;
+.promotion-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
 }
 
-.promotion-card ul {
+.promotion-header p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.promotion-features {
     list-style: none;
     padding: 0;
-    margin-bottom: 1.5rem;
-    text-align: left;
+    margin-bottom: 2rem;
 }
 
-.promotion-card ul li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
+.promotion-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #555;
 }
 
-.promotion-card ul li:before {
-    content: "•";
+.promotion-features i {
     color: var(--primary-color);
-    position: absolute;
-    left: 0;
+    font-size: 1.1rem;
 }
 
 .promotion-price {
-    margin: 1.5rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.price-block {
+    margin-bottom: 0.5rem;
 }
 
 .original-price {
     text-decoration: line-through;
-    color: #666;
+    color: #999;
     font-size: 1.1rem;
     margin-right: 1rem;
 }
 
 .discounted-price {
     color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
-/* Responsive Design */
+.saving-tag, .premium-tag {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.saving-tag {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.premium-tag {
+    background: #fdf2d0;
+    color: #8d6e1a;
+}
+
+.promotion-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilo Premium */
+.promotion-card.premium {
+    border: 2px solid #2c3e50;
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.promotion-card.premium .promotion-icon {
+    color: #2c3e50;
+}
+
+.promotion-button.premium {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.promotion-button.premium:hover {
+    background-color: #1a252f;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .services-hero {
-        padding: 4rem 0 2rem;
-    }
-
-    .services-hero h1 {
-        font-size: 2rem;
-    }
-
-    .service-card {
-        margin: 0 1rem;
+    .promotions {
+        padding: 3rem 0;
     }
 
     .promotion-card {
-        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+
+    .promotion-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 2.5rem;
+    }
+
+    .discounted-price {
+        font-size: 1.75rem;
     }
 } 

@@ -17,7 +17,7 @@ class Header extends HTMLElement {
                     </ul>
                     <div class="user-actions">
                         <button class="btn-login">Entrar</button>
-                        <a href="/criarConta.html" class="btn-register">Criar Conta</a>
+                        <a href="/GoibarberFront/index.html" class="btn-register">Criar Conta</a>
                     </div>
                 </nav>
             </header>

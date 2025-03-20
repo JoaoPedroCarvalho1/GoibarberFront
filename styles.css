@@ -120,7 +120,7 @@ body {
 
 .btn-login:hover {
     background-color: var(--primary-color);
-    color: var(--text-primary);
+    color: var(--header-bg);
 }
 
 .btn-register:hover {

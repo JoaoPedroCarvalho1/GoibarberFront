@@ -7,7 +7,7 @@ class Footer extends HTMLElement {
                     <!-- Logo e Informações Principais -->
                     <div class="footer-main">
                         <div class="footer-brand">
-                            <img src="/src/logo-goiaba.png" alt="Goiabarber Logo" class="footer-logo">
+                            <img src="../logo-goiaba.png" alt="Goiabarber Logo" class="footer-logo">
                             <p>Goiabarber | CNPJ: XX.XXX.XXX/0001-XX</p>
                             <p>Rua das Barbearias, 123 - Centro</p>
                             <p>Goiânia/GO - CEP 74000-000</p>

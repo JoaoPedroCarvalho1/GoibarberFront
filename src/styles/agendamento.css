@@ -1,11 +1,11 @@
 :root {
     --step-active: var(--primary-color);
     --step-complete: #4CAF50;
-    --step-inactive: #ddd;
+    --step-inactive: var(--header-bg);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -81,7 +81,7 @@
 
 .step-text {
     font-size: 0.875rem;
-    color: var(--text-secondary);
+    color: var(--white);
 }
 
 /* Service Selection */
@@ -100,7 +100,7 @@
     padding: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: white;
+    background: var(--header-bg);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -216,7 +216,87 @@
     align-items: center;
 }
 
-/* Responsive Design */
+/* Notificações */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 300px;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+/* Tipos de notificação */
+.notification.error {
+    background-color: #ff4444;
+    color: white;
+    border-left: 4px solid #cc0000;
+}
+
+.notification.success {
+    background-color: #00C851;
+    color: white;
+    border-left: 4px solid #007E33;
+}
+
+/* Ícones */
+.notification i {
+    font-size: 1.25rem;
+}
+
+/* Botão de fechar */
+.notification-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animação de saída */
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
     .services-grid,
     .barbers-grid {
@@ -229,5 +309,12 @@
 
     .slots-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .notification {
+        min-width: auto;
+        width: calc(100% - 40px);
+        top: auto;
+        bottom: 20px;
     }
 } 

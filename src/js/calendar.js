@@ -273,18 +273,5 @@ style.textContent = `
 
 document.head.appendChild(style);
 
-// Exemplo de uso no agendamento
-document.addEventListener('DOMContentLoaded', () => {
-    const calendar = new Calendar('booking-calendar', {
-        onDateSelect: (date) => {
-            // Integração com o sistema de agendamento
-            if (window.bookingManager) {
-                window.bookingManager.handleDateSelect(date);
-            }
-        },
-        disabledDays: [0], // Domingo desabilitado
-        maxDate: new Date(new Date().setMonth(new Date().getMonth() + 2)) // 2 meses à frente
-    });
-});
-
-export default Calendar; 
+// Exporta a classe Calendar
+export { Calendar }; 

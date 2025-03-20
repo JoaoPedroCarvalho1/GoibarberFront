@@ -7,7 +7,7 @@ const MOCK_DATA = {
             description: "Corte profissional personalizado",
             duration: 45,
             price: 45.00,
-            image: "src/images/corte.jpg"
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg"
         },
         {
             id: 2,
@@ -15,7 +15,7 @@ const MOCK_DATA = {
             description: "Modelagem completa com produtos premium",
             duration: 30,
             price: 35.00,
-            image: "src/images/barba.jpg"
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg"
         },
         {
             id: 3,
@@ -23,7 +23,7 @@ const MOCK_DATA = {
             description: "Corte + Barba com atendimento premium",
             duration: 75,
             price: 70.00,
-            image: "src/images/combo.jpg"
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg"
         }
     ],
     
@@ -32,7 +32,7 @@ const MOCK_DATA = {
             id: 1,
             name: "João Silva",
             specialty: "Especialista em Degradê",
-            image: "src/images/barber1.jpg",
+            image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
             rating: 4.8,
             availableDays: [1, 2, 3, 4, 5] // Segunda a Sexta
         },
@@ -40,7 +40,7 @@ const MOCK_DATA = {
             id: 2,
             name: "Pedro Santos",
             specialty: "Barbeiro Master",
-            image: "src/images/barber2.jpg",
+            image: "../barbearia.jpg",
             rating: 4.9,
             availableDays: [1, 2, 3, 4, 5, 6] // Segunda a Sábado
         },
@@ -48,7 +48,7 @@ const MOCK_DATA = {
             id: 3,
             name: "Carlos Oliveira",
             specialty: "Expert em Barba",
-            image: "src/images/barber3.jpg",
+            image: "../barbearia.jpg",
             rating: 4.7,
             availableDays: [2, 3, 4, 5, 6] // Terça a Sábado
         }

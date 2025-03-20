@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/footer.css">
-    <link rel="stylesheet" href="src/styles/buttons.css">
     <link rel="stylesheet" href="src/styles/agendamento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,19 +50,19 @@
                     <h2>Escolha o Serviço</h2>
                     <div class="services-grid">
                         <div class="service-card" data-service="corte" data-price="45">
-                            <img src="src/images/corte.jpg" alt="Corte de Cabelo">
+                            <img src="./src/goiaba-telafundo.png" alt="Corte de Cabelo">
                             <h3>Corte de Cabelo</h3>
                             <p>45 minutos</p>
                             <span class="price">R$ 45,00</span>
                         </div>
                         <div class="service-card" data-service="barba" data-price="35">
-                            <img src="src/images/barba.jpg" alt="Barba">
+                            <img src="./src/goiaba-telafundo.png" alt="Barba">
                             <h3>Barba</h3>
                             <p>30 minutos</p>
                             <span class="price">R$ 35,00</span>
                         </div>
                         <div class="service-card" data-service="combo" data-price="70">
-                            <img src="src/images/combo.jpg" alt="Combo">
+                            <img src="./src/goiaba-telafundo.png " alt="Combo">
                             <h3>Combo Completo</h3>
                             <p>1h15min</p>
                             <span class="price">R$ 70,00</span>
@@ -76,17 +75,17 @@
                     <h2>Escolha o Profissional</h2>
                     <div class="barbers-grid">
                         <div class="barber-card" data-barber="1">
-                            <img src="src/images/barber1.jpg" alt="João Silva">
+                            <img src="./src/barbearia.jpg" alt="João Silva">
                             <h3>João Silva</h3>
                             <p>Especialista em Degradê</p>
                         </div>
                         <div class="barber-card" data-barber="2">
-                            <img src="src/images/barber2.jpg" alt="Pedro Santos">
+                            <img src="./src/barbearia.jpg" alt="Pedro Santos">
                             <h3>Pedro Santos</h3>
                             <p>Barbeiro Master</p>
                         </div>
                         <div class="barber-card" data-barber="3">
-                            <img src="src/images/barber3.jpg" alt="Carlos Oliveira">
+                            <img src="./src/barbearia.jpg" alt="Carlos Oliveira">
                             <h3>Carlos Oliveira</h3>
                             <p>Expert em Barba</p>
                         </div>
@@ -157,10 +156,9 @@
 
     <app-footer></app-footer>
 
-    <script src="src/components/buttons.js"></script>
     <script src="src/components/header.js"></script>
     <!-- <script src="src/components/footer.js"></script> -->
-    <script src="src/js/calendar.js"></script>
-    <script src="src/js/agendamento.js"></script>
+    <script type="module" src="./src/js/calendar.js"></script>
+    <script type="module" src="./src/js/agendamento.js"></script>
 </body>
 </html> 

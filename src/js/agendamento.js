@@ -530,8 +530,20 @@ class BookingManager {
     }
 
     redirectToCheckout(bookingId) {
-        // Implementar redirecionamento para checkout
-        window.location.href = `/checkout.html?booking=${bookingId}`;
+        // Exemplo de dados da compra
+        const purchaseData = {
+            serviceId: this.selectedService.id,
+            barberId: this.selectedBarber.id,
+            date: this.selectedDate.toISOString().split('T')[0],
+            time: this.selectedTime,
+            price: this.selectedService.price
+        };
+
+        // Codificando os dados em base64
+        const encodedData = btoa(JSON.stringify(purchaseData));
+
+        // Redirecionando para a página de checkout com os dados na URL
+        window.location.href = `checkout.html?data=${encodedData}`;
     }
 
     handleDateSelect(date) {

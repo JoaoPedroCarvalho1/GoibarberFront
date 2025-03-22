@@ -1,12 +1,14 @@
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--text-secondary) !important;
     margin: 0;
     padding: 20px;
 }
 
 main {
-    max-width: 600px;
+    display:flex;
+    justify-content:space-around;
+    width:100%;
     margin: auto;
     background: white;
     padding: 20px;
@@ -24,6 +26,7 @@ p {
 
 div {
     margin-bottom: 15px;
+    width:100%;
 }
 
 button {
@@ -37,4 +40,41 @@ button {
 
 button:hover {
     background-color: #218838;
+}
+
+/* Estilos para os detalhes da compra */
+#purchase-details {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para a tabela de pagamento */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--background-light);
+    color: #333;
+}
+
+td {
+    background-color: white;
+}
+
+/* Estilos para cabeçalhos */
+h2, h3 {
+    color: #333;
+    margin-bottom: 10px;
 }

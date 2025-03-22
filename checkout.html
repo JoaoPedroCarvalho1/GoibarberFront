@@ -5,56 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Goiabarber</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../GoibarberFront/src/styles/checkout.css"> <!-- Adicionando o CSS do checkout -->
+    <link rel="stylesheet" href="../GoibarberFront/src/styles/checkout.css">
 </head>
 <body>
     <main>
-        <h1>Checkout</h1>
-        <p>Escolha a forma de pagamento:</p>
-        <form>
-            <div>
-                <input type="radio" id="credit-card" name="payment" value="credit-card" required>
-                <label for="credit-card">Cartão de Crédito</label>
-            </div>
-            <div>
-                <input type="radio" id="pix" name="payment" value="pix" required>
-                <label for="pix">Pix</label>
-            </div>
-            <div>
-                <input type="radio" id="cash" name="payment" value="cash" required>
-                <label for="cash">Dinheiro (Pagamento no dia do serviço)</label>
-            </div>
-            <button type="submit">Finalizar Compra</button>
-        </form>
-        <div id="purchase-details"></div> <!-- Div para exibir os dados da compra -->
+        <div>
+            <h1>Checkout</h1>   
+            <div id="purchase-details"></div>
+            <div id="credit-card-form" style="display: none"></div>
+            <div id="qr-code" style="display: none;"></div>
+        </div>
+        <div>
+            <p>Escolha a forma de pagamento:</p>
+            <form>
+                <div>
+                    <input type="radio" id="credit-card" name="payment" value="credit-card" required>
+                    <label for="credit-card">Cartão de Crédito</label>
+                </div>
+                <div>
+                    <input type="radio" id="pix" name="payment" value="pix" required>
+                    <label for="pix">Pix</label>
+                </div>
+                <div>
+                    <input type="radio" id="cash" name="payment" value="cash" required>
+                    <label for="cash">Dinheiro (Pagamento no dia do serviço)</label>
+                </div>
+                <button type="submit">Finalizar Compra</button>
+            </form>
+        </div>
     </main>
 
-    <script>
-        // Função para decodificar os dados da URL
-        function getPurchaseDetails() {
-            const params = new URLSearchParams(window.location.search);
-            const data = params.get('data'); // Supondo que os dados estão na URL como ?data=base64string
-            if (data) {
-                const decodedData = JSON.parse(atob(data)); // Decodifica a string base64 e converte de volta para objeto
-                displayPurchaseDetails(decodedData); // Chama a função para exibir os dados
-            }
-        }
-
-        // Função para exibir os dados da compra
-        function displayPurchaseDetails(details) {
-            const detailsDiv = document.getElementById('purchase-details');
-            detailsDiv.innerHTML = `
-                <h2>Detalhes da Compra</h2>
-                <p>Serviço ID: ${details.serviceId}</p>
-                <p>Barbeiro ID: ${details.barberId}</p>
-                <p>Data: ${details.date}</p>
-                <p>Horário: ${details.time}</p>
-                <p>Preço: R$ ${details.price.toFixed(2)}</p>
-            `;
-        }
-
-        // Chama a função ao carregar a página
-        window.onload = getPurchaseDetails;
-    </script>
+    <script src="src/js/checkout.js"></script>
 </body>
 </html>

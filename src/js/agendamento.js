@@ -532,8 +532,8 @@ class BookingManager {
     redirectToCheckout(bookingId) {
         // Exemplo de dados da compra
         const purchaseData = {
-            serviceId: this.selectedService.id,
-            barberId: this.selectedBarber.id,
+            service: this.selectedService.name,
+            barber: this.selectedBarber.name,
             date: this.selectedDate.toISOString().split('T')[0],
             time: this.selectedTime,
             price: this.selectedService.price

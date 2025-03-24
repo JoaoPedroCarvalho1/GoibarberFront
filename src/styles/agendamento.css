@@ -12,7 +12,7 @@ h2{
 }
 .container {
     max-width: 100%;
-    margin: 20rem auto;
+    margin: 10rem auto;
     padding: 0 1rem;
 }
 
@@ -118,9 +118,9 @@ h2{
 
 .service-card.selected,
 .barber-card.selected {
-    border: 2px solid var(--highlight-color);
+    border: 2px solid var(--primary-color);
     box-shadow: 0 0 0 2px rgba(255, 144, 0, 0.2);
-    background:var(--highlight-color))
+    background:var(--primary-color);
 }
 
 .service-card img,

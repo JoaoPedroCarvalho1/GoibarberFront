@@ -83,27 +83,28 @@ body {
 
 /* Barbers Section */
 .barbers-section {
-    padding: 4rem 0;
+    padding: 60px 0;
+    background-color: var(--bg-secondary);
 }
 
 .barbers-carousel {
     position: relative;
     overflow: hidden;
-    padding: 0 3rem;
+    padding: 20px 0;
 }
 
 .barbers-track {
     display: flex;
-    gap: 2rem;
-    transition: transform 0.5s ease-in-out;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .barber-card {
-    min-width: 300px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 0 0 300px;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -114,18 +115,83 @@ body {
 
 .barber-card img {
     width: 100%;
-    height: 300px;
+    height: 200px;
     object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .barber-card h3 {
-    margin: 1rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
+    margin-bottom: 5px;
 }
 
 .barber-card p {
-    margin: 0 1rem 1rem;
-    color: #666;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.barber-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stars {
+    color: #ffd700;
+    letter-spacing: 2px;
+}
+
+.rating-value {
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+.barber-availability {
+    margin-top: 10px;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.day-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+.barbers-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.barbers-button:hover {
+    opacity: 1;
+}
+
+.barbers-button.prev {
+    left: 10px;
+}
+
+.barbers-button.next {
+    right: 10px;
 }
 
 /* Modal */
@@ -203,6 +269,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .barber-card {
+        flex: 0 0 250px;
+    }
+
     .barber-info {
         grid-template-columns: 1fr;
     }

@@ -5,91 +5,92 @@ function getPurchaseDetails() {
     if (data) {
         const decodedData = JSON.parse(atob(data)); // Decodifica a string base64 e converte de volta para objeto
         displayPurchaseDetails(decodedData); // Chama a função para exibir os dados
-        handlePaymentMethod(decodedData.paymentMethod); // Chama a função para lidar com o método de pagamento
     }
 }
 
 // Função para exibir os dados da compra
 function displayPurchaseDetails(details) {
-    console.log(details)
-    const detailsDiv = document.getElementById('purchase-details');
+    const detailsDiv = document.getElementById('booking-summary');
+    const totalRow = document.getElementById('total-row');
+    const installments = document.getElementById('installments');
+
     detailsDiv.innerHTML = `
-        <h1>Detalhes da Compra</h1>
-        <h2>Preço: R$ ${details.price.toFixed(2)}</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>DADO</th>
-                    <th>Por</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Serviço</td>
-                    <td>${details.service}</td>
-                </tr>
-                <tr>
-                    <td>Barbeiro</td>
-                    <td>${details.barber}</td>
-                </tr>
-                <tr>
-                    <td>Data</td>
-                    <td>${details.time}</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2><i class="fas fa-calendar-check"></i> Resumo do Agendamento</h2>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <i class="fas fa-cut"></i>
+                        <div class="item-details">
+                            <label>Serviço</label>
+                            <span id="service-name">${details.service}</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div class="item-details">
+                            <label>Profissional</label>
+                            <span id="barber-name">${details.barber}</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <i class="far fa-calendar-alt"></i>
+                        <div class="item-details">
+                            <label>Data</label>
+                            <span id="booking-date">${details.date}</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <i class="far fa-clock"></i>
+                        <div class="item-details">
+                            <label>Horário</label>
+                            <span id="booking-time">${details.time}</span>
+                        </div>
+                    </div>
+                </div>
+    `;
+    totalRow.innerHTML = `
+        <span>Total</span>
+        <span>R$ ${details.price}</span>
+    `;
+    updateInstallmentOptions(details);
+}
+
+// Arredonda para 2 casas decimais
+function formatPrice(value) {
+    return (Math.round(value * 100) / 100).toFixed(2);
+}
+
+// Atualiza as opções de parcelamento
+function updateInstallmentOptions(details) {
+    const installmentSelect = document.getElementById('installments');
+    installmentSelect.innerHTML = `
+        <select>
+            <option>1x de R$ ${formatPrice(details.price)}</option>
+            <option>2x de R$ ${formatPrice(details.price / 2)}</option>
+            <option>3x de R$ ${formatPrice(details.price / 3)}</option>
+        </select>
     `;
 }
 
-// Função para lidar com o método de pagamento
-function handlePaymentMethod(paymentMethod) {
-    if (paymentMethod === 'credit_card') {
-        // Exibir formulário para dados do cartão de crédito
-        displayCreditCardForm();
-    } else if (paymentMethod === 'pix') {
-        // Exibir QR code para pagamento via Pix
-        displayQRCode();
-    }
-}
+const moneySection = document.getElementById('moneySection');
+const pixSection = document.getElementById('pixSection');
+const creditCardForm = document.getElementById('credit-card-form');
 
-// Função para exibir o formulário do cartão de crédito
-function displayCreditCardForm() {
-    const formDiv = document.getElementById('credit-card-form');
-    formDiv.innerHTML = `
-        <h3>Dados do Cartão de Crédito</h3>
-        <input type="text" id="card-number" placeholder="Número do Cartão" required />
-        <input type="text" id="card-holder" placeholder="Nome do Titular" required />
-        <input type="text" id="expiry-date" placeholder="Data de Validade (MM/AA)" required />
-        <input type="text" id="cvv" placeholder="CVV" required />
-        <button onclick="validateCreditCard()">Pagar</button>
-    `;
-}
+document.getElementById('credit-card').addEventListener('click', () => {
+    moneySection.style.display = 'none';
+    pixSection.style.display = 'none';
+    creditCardForm.style.display = 'block';
+});
+document.getElementById('pix').addEventListener('click', () => {
+    creditCardForm.style.display = 'none';
+    moneySection.style.display = 'none';
+    pixSection.style.display = 'block';
+});
+document.getElementById('money').addEventListener('click', () => {
+    creditCardForm.style.display = 'none';
+    pixSection.style.display = 'none';
+    moneySection.style.display = 'block';
+});
 
-// Função para validar os dados do cartão de crédito
-function validateCreditCard() {
-    // Lógica de validação dos dados do cartão
-    const cardNumber = document.getElementById('card-number').value;
-    const cardHolder = document.getElementById('card-holder').value;
-    const expiryDate = document.getElementById('expiry-date').value;
-    const cvv = document.getElementById('cvv').value;
-
-    // Exemplo de validação simples
-    if (!cardNumber || !cardHolder || !expiryDate || !cvv) {
-        alert('Por favor, preencha todos os campos do cartão.');
-        return;
-    }
-    // Aqui você pode adicionar mais validações conforme necessário
-    alert('Dados do cartão validados com sucesso!');
-}
-
-// Função para exibir o QR code
-function displayQRCode() {
-    const qrCodeDiv = document.getElementById('qr-code');
-    qrCodeDiv.innerHTML = `
-        <h3>Pagamento via Pix</h3>
-        <img src="link-para-o-qrcode-aqui" alt="QR Code para pagamento" />
-    `;
-}
 
 // Chama a função ao carregar a página
 window.onload = getPurchaseDetails;

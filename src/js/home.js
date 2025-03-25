@@ -1,4 +1,4 @@
-import { barbers } from './data.js';
+import { ApiService } from '../mocks/data.js';
 
 class BarbersCarousel {
     constructor() {

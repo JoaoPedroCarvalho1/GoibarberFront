@@ -17,8 +17,7 @@ class Header extends HTMLElement {
                     </ul>
                     <div class="user-actions">
                         
-                        <a href="/GoibarberFront/index.html"class="btn-login">Entrar</a>
-                        <a href="/GoibarberFront/index.html" class="btn-register">Criar Conta</a>
+                        <a href="/GoibarberFront/index.html"class="btn-login">Sair</a>
                     </div>
                 </nav>
             </header>
@@ -39,8 +38,7 @@ class Header extends HTMLElement {
                         <li><a href="/GoibarberFront/agendamento.html">Agendamento</a></li>
                         <li><a href="/GoibarberFront/perfil.html">Perfil</a></li>
                         <div class="user-actions">
-                            <a href="/GoibarberFront/index.html"class="btn-login">Entrar</a>
-                            <a href="/GoibarberFront/index.html" class="btn-register">Criar Conta</a>
+                            <a href="/GoibarberFront/index.html"class="btn-login">Sair</a>
                         </div>
                     </ul>
                 </nav>

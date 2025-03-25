@@ -1,5 +1,6 @@
 // Dados mockados do usuário
 const usuarioMock = {
+    admin: true,
     nome: "João da Silva",
     email: "joao.silva@email.com",
     telefone: "(11) 98765-4321",

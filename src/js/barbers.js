@@ -14,7 +14,7 @@ const barbersData = [
             "Combo (Corte + Barba) - R$ 70"
         ]
     },
-    // Adicione mais barbeiros aqui
+
 ];
 
 class BarbersCarousel {
@@ -27,7 +27,7 @@ class BarbersCarousel {
         this.closeModal = document.querySelector('.close-modal');
         
         this.currentPosition = 0;
-        this.cardWidth = this.cards[0].offsetWidth + 32; // width + gap
+        this.cardWidth = this.cards[0].offsetWidth + 32; 
         
         this.initializeCarousel();
     }
@@ -105,7 +105,6 @@ class BarbersCarousel {
     }
 }
 
-// Initialize carousels
 document.addEventListener('DOMContentLoaded', () => {
     const bannerCarousel = new Carousel(document.querySelector('.banner-carousel'));
     const barbersCarousel = new BarbersCarousel();

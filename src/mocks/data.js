@@ -188,7 +188,42 @@ const MOCK_DATA = {
             status: "pending",
             price: 70.00
         }
-    ]
+    ],
+
+    usuariosMock: [
+        {
+            admin: true,
+            nome: "João da Silva",
+            email: "joao.silva@email.com",
+            telefone: "(11) 98765-4321",
+            nascimento: "1990-05-15",
+            avatar: "https://i.pravatar.cc/150?img=68" // Avatar aleatório para teste
+        },
+        {
+            admin: false,
+            nome: "Maria Oliveira",
+            email: "maria.oliveira@email.com",
+            telefone: "(11) 91234-5678",
+            nascimento: "1995-08-25",
+            avatar: "https://i.pravatar.cc/150?img=72" 
+        },
+        {
+            admin: false,
+            nome: "Carlos Souza",
+            email: "carlos.souza@email.com",
+            telefone: "(21) 99876-5432",
+            nascimento: "1988-03-10",
+            avatar: "https://i.pravatar.cc/150?img=54" 
+        },
+        {
+            admin: true,
+            nome: "Luciana Pereira",
+            email: "luciana.pereira@email.com",
+            telefone: "(31) 98765-4321",
+            nascimento: "1982-12-02",
+            avatar: "https://i.pravatar.cc/150?img=80" 
+        }
+    ]       
 };
 
 // Simulação de chamadas à API

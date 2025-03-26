@@ -1,79 +1,95 @@
+import { getCookie } from '../services/auth.js';
 
-const usuarioMock = {
-    admin: true,
-    nome: "João da Silva",
-    email: "joao.silva@email.com",
-    telefone: "(11) 98765-4321",
-    nascimento: "1990-05-15",
-    avatar: "https://i.pravatar.cc/150?img=68" 
-};
-
-
-let isEditMode = false;
-
-function inicializarPerfil() {
-
-    document.getElementById('profile-name').textContent = usuarioMock.nome;
-    document.getElementById('display-nome').textContent = usuarioMock.nome;
-    document.getElementById('display-email').textContent = usuarioMock.email;
-    document.getElementById('display-telefone').textContent = usuarioMock.telefone;
-    document.getElementById('display-nascimento').textContent = formatarData(usuarioMock.nascimento);
-    document.getElementById('avatar-preview').src = usuarioMock.avatar;
-
-
-    document.getElementById('edit-nome').value = usuarioMock.nome;
-    document.getElementById('edit-email').value = usuarioMock.email;
-    document.getElementById('edit-telefone').value = usuarioMock.telefone;
-    document.getElementById('edit-nascimento').value = usuarioMock.nascimento;
+// Get user data from cookies
+const data = getCookie('userData');
+console.log(data);
+const userData = JSON.parse(data) || 'null';
+console.log(userData)
+// Redirect to login if no user data found
+if (!userData) {
+    window.location.href = '/index.html';
 }
 
+// Initialize profile data
+function initializeProfile() {
+    // Set profile information
+    document.getElementById('profile-name').textContent = userData.nome;
+    document.getElementById('display-nome').textContent = userData.nome;
+    document.getElementById('display-email').textContent = userData.email;
+    document.getElementById('display-telefone').textContent = userData.telefone;
+    document.getElementById('display-nascimento').textContent = userData.nascimento;
+    
+    // Set avatar
+    const avatarPreview = document.getElementById('avatar-preview');
+    avatarPreview.src = userData.avatar;
+    
+    // Set form values for edit mode
+    document.getElementById('edit-nome').value = userData.nome;
+    document.getElementById('edit-email').value = userData.email;
+    document.getElementById('edit-telefone').value = userData.telefone;
+    document.getElementById('edit-nascimento').value = userData.nascimento;
+}
 
-function toggleEditMode() {
+// Toggle edit mode
+window.toggleEditMode = () => {
     const viewMode = document.getElementById('view-mode');
     const editMode = document.getElementById('edit-mode');
     
-    isEditMode = !isEditMode;
-    
-    if (isEditMode) {
+    if (viewMode.style.display !== 'none') {
         viewMode.style.display = 'none';
         editMode.style.display = 'block';
     } else {
         viewMode.style.display = 'block';
         editMode.style.display = 'none';
     }
-}
+};
 
-function salvarAlteracoes() {
+// Save changes
+window.salvarAlteracoes = () => {
+    // Get updated values
+    const updatedData = {
+        ...userData,
+        nome: document.getElementById('edit-nome').value,
+        email: document.getElementById('edit-email').value,
+        telefone: document.getElementById('edit-telefone').value,
+        nascimento: document.getElementById('edit-nascimento').value
+    };
 
-    usuarioMock.nome = document.getElementById('edit-nome').value;
-    usuarioMock.email = document.getElementById('edit-email').value;
-    usuarioMock.telefone = document.getElementById('edit-telefone').value;
-    usuarioMock.nascimento = document.getElementById('edit-nascimento').value;
+    // Update cookie with new data
+    document.cookie = `userData=${JSON.stringify(updatedData)};path=/;max-age=${7 * 24 * 60 * 60}`; // 7 days
 
-   
-    inicializarPerfil();
+    // Update display
+    document.getElementById('profile-name').textContent = updatedData.nome;
+    document.getElementById('display-nome').textContent = updatedData.nome;
+    document.getElementById('display-email').textContent = updatedData.email;
+    document.getElementById('display-telefone').textContent = updatedData.telefone;
+    document.getElementById('display-nascimento').textContent = updatedData.nascimento;
+
+    // Switch back to view mode
     toggleEditMode();
+};
 
-  
-    alert('Perfil atualizado com sucesso!');
-}
-
-document.getElementById('avatar-input').addEventListener('change', function(e) {
-    const file = e.target.files[0];
+// Handle avatar change
+document.getElementById('avatar-input').addEventListener('change', function(event) {
+    const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('avatar-preview').src = e.target.result;
-            usuarioMock.avatar = e.target.result;
-        }
+            const avatarPreview = document.getElementById('avatar-preview');
+            avatarPreview.src = e.target.result;
+            
+            // Update userData with new avatar
+            const updatedData = {
+                ...userData,
+                avatar: e.target.result
+            };
+            
+            // Update cookie with new avatar
+            document.cookie = `userData=${JSON.stringify(updatedData)};path=/;max-age=${7 * 24 * 60 * 60}`;
+        };
         reader.readAsDataURL(file);
     }
 });
 
-
-function formatarData(data) {
-    return new Date(data).toLocaleDateString('pt-BR');
-}
-
-
-document.addEventListener('DOMContentLoaded', inicializarPerfil); 
+// Initialize profile when page loads
+document.addEventListener('DOMContentLoaded', initializeProfile); 

@@ -19,13 +19,13 @@
         <div class="wrapper">
             <img src="./src/logo-goiaba.png" alt="">
             <div class="input-box">
-                <input type="text" placeholder="E-mail" required>
+                <input type="text" id="email" placeholder="E-mail" required>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Senha" required>
+                <input type="password" id="senha" placeholder="Senha" required>
             </div>
-
-            <a class="btn-register btn-form" href="./home.html">Entrar</a>
+            <div id="error-message" style="color: red; display: none; margin-bottom: 10px;"></div>
+            <button class="btn-register btn-form" onclick="handleLogin()">Entrar</button>
             <div class="registro-link">
                 <a href="./criarConta.html"><span class="white-text">Não tem conta?</span> Crie uma agora</a>
                 <br>
@@ -37,5 +37,9 @@
 
     <script src="src/components/headerClear.js"></script>
     <script src="src/components/footer.js"></script>
+    <script type="module">
+        import { initLogin } from './src/services/login.js';
+        initLogin();
+    </script>
 </body>
 </html>

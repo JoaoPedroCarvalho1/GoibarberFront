@@ -168,44 +168,36 @@ const MOCK_DATA = {
         afternoon: ["14:00", "15:00", "16:00", "17:00", "18:00"]
     },
 
-    // Mock de agendamentos do usuário logado
-    userBookings: [
-        {
-            id: 1,
-            serviceId: 1,
-            barberId: 2,
-            date: "2024-03-20",
-            time: "14:00",
-            status: "confirmed",
-            price: 75.00
-        },
-        {
-            id: 2,
-            serviceId: 3,
-            barberId: 1,
-            date: "2024-03-25",
-            time: "10:00",
-            status: "pending",
-            price: 70.00
-        }
-    ],
-
     usuariosMock: [
         {
             admin: true,
             nome: "João da Silva",
             email: "joao.silva@email.com",
+            senha: "123456",
             telefone: "(11) 98765-4321",
             nascimento: "1990-05-15",
-            avatar: "https://i.pravatar.cc/150?img=68" // Avatar aleatório para teste
+            avatar: "",
+            userBookings: [
+                {
+                    id: 1,
+                    serviceId: 1,
+                    barberId: 2,
+                    date: "2024-03-20",
+                    time: "14:00",
+                    status: "confirmed",
+                    price: 75.00
+                }
+            ]
         },
         {
             admin: false,
             nome: "Maria Oliveira",
             email: "maria.oliveira@email.com",
+            senha: "123456",
             telefone: "(11) 91234-5678",
             nascimento: "1995-08-25",
-            avatar: "https://i.pravatar.cc/150?img=72" 
+            avatar: "",
+            userBookings: []
         },
         {
             admin: false,
@@ -213,7 +205,18 @@ const MOCK_DATA = {
             email: "carlos.souza@email.com",
             telefone: "(21) 99876-5432",
             nascimento: "1988-03-10",
-            avatar: "https://i.pravatar.cc/150?img=54" 
+            avatar: "",
+            userBookings: [
+                {
+                    id: 2,
+                    serviceId: 3,
+                    barberId: 1,
+                    date: "2024-03-25",
+                    time: "10:00",
+                    status: "pending",
+                    price: 70.00
+                }
+            ]
         },
         {
             admin: true,
@@ -221,7 +224,8 @@ const MOCK_DATA = {
             email: "luciana.pereira@email.com",
             telefone: "(31) 98765-4321",
             nascimento: "1982-12-02",
-            avatar: "https://i.pravatar.cc/150?img=80" 
+            avatar: "",
+            userBookings: []
         }
     ]       
 };
@@ -264,6 +268,21 @@ class ApiService {
             status: "pending"
         };
         return newBooking;
+    }
+
+    static async login(email, senha) {
+        await new Promise(resolve => setTimeout(resolve, 300));
+        const user = MOCK_DATA.usuariosMock.find(
+            user => user.email === email && user.senha === senha
+        );
+        
+        if (!user) {
+            throw new Error('Email ou senha inválidos');
+        }
+        
+        // Remove senha before returning user data
+        const { senha: _, ...userData } = user;
+        return userData;
     }
 }
 

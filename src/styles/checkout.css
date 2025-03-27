@@ -16,6 +16,9 @@ body {
     padding: 4rem 1rem;
     min-height: calc(100vh - 80px);
     width: 70%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 }
 
 .checkout-content {

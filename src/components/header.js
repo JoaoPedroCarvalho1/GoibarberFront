@@ -1,6 +1,21 @@
+// Função getCookie no início do arquivo
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    const cookie = cookies.find(c => c.trim().startsWith(name + '='));
+    return cookie ? cookie.split('=')[1] : null;
+}
+
 class Header extends HTMLElement {
     constructor() {
         super();
+        const isAdmin = this.checkIfUserIsAdmin();
+        
+        // Admin menu items that should only be shown to admin users
+        const adminMenuItems = isAdmin ? `
+            <li><a href="/GoibarberFront/cadastros.html">Cadastros</a></li>
+            <li><a href="/GoibarberFront/cliente.html">Cliente</a></li>
+        ` : '';
+
         this.innerHTML = `
             <header class="header desktop">
                 <nav class="nav-container">
@@ -14,6 +29,7 @@ class Header extends HTMLElement {
                         <li><a href="/GoibarberFront/servicos.html">Serviços</a></li>
                         <li><a href="/GoibarberFront/agendamento.html">Agendamento</a></li>
                         <li><a href="/GoibarberFront/perfil.html">Perfil</a></li>
+                        ${adminMenuItems}
                     </ul>
                     <div class="user-actions">
                         
@@ -37,6 +53,7 @@ class Header extends HTMLElement {
                         <li><a href="/GoibarberFront/servicos.html">Serviços</a></li>
                         <li><a href="/GoibarberFront/agendamento.html">Agendamento</a></li>
                         <li><a href="/GoibarberFront/perfil.html">Perfil</a></li>
+                        ${adminMenuItems}
                         <div class="user-actions">
                             <a href="/GoibarberFront/index.html"class="btn-login">Sair</a>
                         </div>
@@ -44,6 +61,13 @@ class Header extends HTMLElement {
                 </nav>
             </header>            
         `;
+    }
+
+    checkIfUserIsAdmin() {
+        const userDataCookie = getCookie('userData');
+        console.log(userDataCookie);
+        const userData = userDataCookie ? JSON.parse(userDataCookie) : {};
+        return userData.admin === true;
     }
 }
 

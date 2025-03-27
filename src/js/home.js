@@ -6,19 +6,26 @@ class BarbersCarousel {
         this.init();
     }
 
-    init() {
-        this.renderBarbers();
+    async init() {
+        await this.loadBarbers();
         this.setupControls();
     }
 
-    renderBarbers() {
+    async loadBarbers() {
+        try {
+            const barbers = await ApiService.getBarbers();
+            this.renderBarbers(barbers);
+        } catch (error) {
+            console.error('Erro ao carregar barbeiros:', error);
+        }
+    }
+
+    renderBarbers(barbers) {
         const track = document.querySelector('.barbers-track');
         if (!track) return;
 
-        // Limpa o conteúdo existente
         track.innerHTML = '';
 
-        // Renderiza os barbeiros do mock
         barbers.forEach(barber => {
             const card = this.createBarberCard(barber);
             track.appendChild(card);
@@ -30,7 +37,6 @@ class BarbersCarousel {
         card.className = 'barber-card';
         card.setAttribute('data-barber-id', barber.id);
 
-        // Cria o HTML do card com os dados do mock
         card.innerHTML = `
             <img src="${barber.image}" alt="${barber.name}" onerror="this.src='src/assets/images/default-barber.jpg'">
             <h3>${barber.name}</h3>
@@ -47,7 +53,6 @@ class BarbersCarousel {
             </div>
         `;
 
-        // Adiciona evento de clique para redirecionamento
         card.addEventListener('click', () => {
             window.location.href = `agendamento.html?barberId=${barber.id}`;
         });
@@ -80,18 +85,9 @@ class BarbersCarousel {
     }
 
     renderAvailableDays(days) {
-        const shortDays = {
-            'Segunda': 'Seg',
-            'Terça': 'Ter',
-            'Quarta': 'Qua',
-            'Quinta': 'Qui',
-            'Sexta': 'Sex',
-            'Sábado': 'Sáb',
-            'Domingo': 'Dom'
-        };
-
-        return days.map(day => `
-            <span class="day-badge">${shortDays[day]}</span>
+        const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        return days.map(dayNumber => `
+            <span class="day-badge">${dayNames[dayNumber]}</span>
         `).join('');
     }
 

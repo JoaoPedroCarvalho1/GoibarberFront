@@ -256,7 +256,22 @@ class ApiService {
 
     static async getUserBookings() {
         await new Promise(resolve => setTimeout(resolve, 400));
-        return MOCK_DATA.userBookings;
+        const allBookings = MOCK_DATA.usuariosMock.reduce((bookings, user) => {
+            return [...bookings, ...user.userBookings.map(booking => {
+                const service = MOCK_DATA.services.find(s => s.id === booking.serviceId);
+                const barber = MOCK_DATA.barbers.find(b => b.id === booking.barberId);
+                
+                return {
+                    ...booking,
+                    userName: user.nome,
+                    userEmail: user.email,
+                    serviceName: service ? service.name : 'Serviço não encontrado',
+                    barberName: barber ? barber.name : 'Profissional não encontrado'
+                };
+            })];
+        }, []);
+        
+        return allBookings;
     }
 
     static async createBooking(bookingData) {

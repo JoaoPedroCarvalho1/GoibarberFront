@@ -58,9 +58,9 @@
                             <label>Data de Nascimento:</label>
                             <p id="display-nascimento"></p>
                         </div>
-                        <btn-primary class="edit-button" onclick="toggleEditMode()">
+                        <a class="edit-button btn-login" onclick="toggleEditMode()">
                             Editar Perfil
-                        </btn-primary>
+                        </a>
                     </div>
 
                     <form class="profile-form" id="edit-mode" style="display: none;">
@@ -81,12 +81,12 @@
                             <input type="date" id="edit-nascimento" required>
                         </div>
                         <div class="button-group">
-                            <btn-primary class="save-button" onclick="salvarAlteracoes()">
+                            <a class="save-button btn-login" onclick="salvarAlteracoes()">
                                 Salvar
-                            </btn-primary>
-                            <btn-secondary class="cancel-button" onclick="toggleEditMode()">
+                            </a>
+                            <a class="cancel-button btn-login" onclick="toggleEditMode()">
                                 Cancelar
-                            </btn-secondary>
+                            </a>
                         </div>
                     </form>
                 </div>

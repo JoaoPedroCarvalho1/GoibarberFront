@@ -95,78 +95,87 @@ body {
 
 .barbers-track {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     transition: transform 0.3s ease-in-out;
+    padding: 20px;
 }
 
 .barber-card {
-    flex: 0 0 300px;
-    background: var(--white);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 280px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    position: relative;
 }
 
 .barber-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .barber-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
 }
 
 .barber-card h3 {
-    color: var(--text-primary);
-    margin-bottom: 5px;
+    font-size: 1.2rem;
+    margin: 16px 16px 8px;
+    color: #312E38;
 }
 
 .barber-card p {
-    color: var(--text-secondary);
-    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #666360;
+    margin: 0 16px 16px;
+    line-height: 1.4;
 }
 
 .barber-rating {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    padding: 12px 16px;
+    background: #F5F5F5;
+    border-top: 1px solid #eee;
 }
 
 .stars {
-    color: #ffd700;
-    letter-spacing: 2px;
+    color: #FFB800;
 }
 
 .rating-value {
-    color: var(--text-secondary);
     font-weight: bold;
+    color: #312E38;
 }
 
 .barber-availability {
-    margin-top: 10px;
+    padding: 12px 16px;
+    background: #F5F5F5;
+    border-top: 1px solid #eee;
 }
 
 .days {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 5px;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .day-badge {
     background-color: var(--primary-color);
     color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.8em;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: 500;
 }
 
+/* Controles do carrossel */
 .barbers-button {
     position: absolute;
     top: 50%;
@@ -180,6 +189,7 @@ body {
     cursor: pointer;
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    z-index: 10;
 }
 
 .barbers-button:hover {
@@ -269,8 +279,17 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .barbers-track {
+        gap: 16px;
+        padding: 16px;
+    }
+
     .barber-card {
-        flex: 0 0 250px;
+        flex: 0 0 240px;
+    }
+
+    .barber-card img {
+        height: 160px;
     }
 
     .barber-info {

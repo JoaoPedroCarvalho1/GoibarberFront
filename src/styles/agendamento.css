@@ -261,7 +261,7 @@ h2{
 .step-navigation {
     display: flex;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 /* My Bookings */

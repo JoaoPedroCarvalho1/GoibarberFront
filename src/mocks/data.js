@@ -1,6 +1,5 @@
-// Função para inicializar os dados do localStorage
 const initializeLocalStorage = () => {
-    // Verifica se já existem dados no localStorage
+
     const storedServices = localStorage.getItem('services');
     const storedBarbers = localStorage.getItem('barbers');
 
@@ -165,6 +164,30 @@ const initializeLocalStorage = () => {
                 image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
                 rating: 4.7,
                 availableDays: [2, 3, 4, 5, 6]
+            },
+            {
+                id: 4,
+                name: "Lucas Santos",
+                specialty: "Barbeiro Master",
+                image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
+                rating: 4.9,
+                availableDays: [1, 2, 3, 4, 5, 6]
+            },
+            {
+                id: 5,
+                name: "Marcos Santos",
+                specialty: "Barbeiro Master",
+                image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
+                rating: 4.9,
+                availableDays: [1, 2, 3, 4, 5, 6]
+            },
+            {
+                id: 6,
+                name: "Pedro silva",
+                specialty: "Barbeiro Master",
+                image: "https://static.wixstatic.com/media/4c82981e961041ae9b1a50b5895e47ae.jpg/v1/fill/w_1899,h_906,al_t,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4c82981e961041ae9b1a50b5895e47ae.jpg",
+                rating: 4.9,
+                availableDays: [1, 2, 3, 4, 5, 6]
             }
         ],
         timeSlots: {
@@ -174,8 +197,8 @@ const initializeLocalStorage = () => {
         usuariosMock: [
             {
                 admin: true,
-                nome: "João da Silva",
-                email: "joao.silva@email.com",
+                nome: "teste",
+                email: "teste@gmail.com",
                 senha: "123456",
                 telefone: "(11) 98765-4321",
                 nascimento: "1990-05-15",

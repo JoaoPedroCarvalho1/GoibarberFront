@@ -197,11 +197,11 @@ body {
 }
 
 .barbers-button.prev {
-    left: 10px;
+    left: 40px;
 }
 
 .barbers-button.next {
-    right: 10px;
+    right: 40px;
 }
 
 /* Modal */

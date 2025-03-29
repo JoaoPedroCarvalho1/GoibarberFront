@@ -91,6 +91,53 @@ document.getElementById('money').addEventListener('click', () => {
     moneySection.style.display = 'block';
 });
 
+function validateCreditCardForm() {
+    const cardName = document.getElementById('cardName').value;
+    const cardNumber = document.getElementById('cardNumber').value;
+    const cardExpiry = document.getElementById('cardExpiry').value;
+    const cardCVV = document.getElementById('cardCVV').value;
+
+    if (!cardName.trim()) {
+        showError('Por favor, insira o nome no cartão');
+        return false;
+    }
+    if (!cardNumber.trim() || cardNumber.length < 16) {
+        showError('Número do cartão inválido');
+        return false;
+    }
+    if (!cardExpiry.trim() || !cardExpiry.match(/^\d{2}\/\d{2}$/)) {
+        showError('Data de validade inválida (MM/YY)');
+        return false;
+    }
+    if (!cardCVV.trim() || cardCVV.length < 3) {
+        showError('CVV inválido');
+        return false;
+    }
+    return true;
+}
+
+function showError(message) {
+    // Você pode implementar sua própria lógica de exibição de erro
+    alert(message);
+}
+
+function generateOrderNumber() {
+    return 'GB' + Math.random().toString(36).substr(2, 9).toUpperCase();
+}
+
+document.querySelector('.confirm-button').addEventListener('click', () => {
+    const creditCardOption = document.getElementById('credit');
+    const pixOption = document.getElementById('pix');
+    const moneyOption = document.getElementById('money');
+
+    if (creditCardOption.checked && !validateCreditCardForm()) {
+        return;
+    }
+
+    // Gerar número do pedido e redirecionar
+    const orderNumber = generateOrderNumber();
+    window.location.href = `thank-you.html?order=${orderNumber}`;
+});
 
 // Chama a função ao carregar a página
 window.onload = getPurchaseDetails;

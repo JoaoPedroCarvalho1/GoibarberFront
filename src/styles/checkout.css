@@ -215,6 +215,15 @@ section h2 i {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.confirm-button:hover {
+    transform: scale(1.05);
 }
 
 /* Responsividade */

@@ -1,4 +1,4 @@
-import { ApiService } from '../mocks/data.js';
+import { ApiService, MOCK_DATA } from '../mocks/data.js';
 
 class ClientManager {
     constructor() {
@@ -15,8 +15,7 @@ class ClientManager {
     async loadClients() {
         try {
 
-            const users = ApiService.MOCK_DATA.usuariosMock;
-            
+            const users = MOCK_DATA.usuariosMock;
             users.forEach(user => {
                 const clientCard = this.createClientCard(user);
                 this.clientsList.appendChild(clientCard);

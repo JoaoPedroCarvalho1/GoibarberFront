@@ -343,11 +343,6 @@ class BookingManager {
                 <div class="booking-status">
                     <span class="status-badge">${this.getStatusLabel(booking.status)}</span>
                 </div>
-                <div class="booking-actions">
-                    ${booking.status === 'pending' ? `
-                        <button class="btn-cancel" data-booking-id="${booking.id}">Cancelar</button>
-                    ` : ''}
-                </div>
             </div>
         `).join('');
     }

@@ -229,6 +229,7 @@ const initializeLocalStorage = () => {
                 admin: false,
                 nome: "Carlos Souza",
                 email: "carlos.souza@email.com",
+                senha: "123456",
                 telefone: "(21) 99876-5432",
                 nascimento: "1988-03-10",
                 avatar: "",
